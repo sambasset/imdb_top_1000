@@ -82,6 +82,21 @@ SELECT *
             ORDER BY totalnumber DESC
     ) WHERE totalnumber >= 11
 ```
-
 This returns the following ...
 
+ ![alt text](https://github.com/sambasset/imdb_top_1000/blob/main/imdb_project_2.png?raw=true)
+ 
+Then we will see what movies Robert De Niro has starred in from newest to oldest.
+
+```
+SELECT Series_Title, Released_Year
+  FROM `clean-result-365422.movie_data.imdb_top_1000`
+    WHERE Star1 = 'Robert De Niro' 
+      OR Star2 = 'Robert De Niro'
+      OR Star3 = 'Robert De Niro'
+      OR Star4 = 'Robert De Niro'
+        ORDER BY Released_Year DESC
+```
+This returns the following ...
+
+ ![alt text](https://github.com/sambasset/imdb_top_1000/blob/main/imdb_project_3.png?raw=true)
