@@ -32,3 +32,28 @@ SELECT s.stars, COUNT(s.stars) as totalnumber
       GROUP BY s.stars
         ORDER BY totalnumber DESC
 ```
+This returned 2706 lines (actors). I could manually count to get the breakpoint to create a query that will return only the top 5 however here is a query that will return only the numbers so I can look at the 5th line to find the breakpoint of # of films for the top 5
+```
+SELECT DISTINCT totalnumber
+  FROM
+  (SELECT s.stars, COUNT(s.stars) as totalnumber
+    FROM (
+      SELECT Star1 as stars
+        FROM `clean-result-365422.movie_data.imdb_top_1000`
+          UNION ALL
+      SELECT Star2
+        FROM `clean-result-365422.movie_data.imdb_top_1000`
+          UNION ALL
+      SELECT Star3
+        FROM `clean-result-365422.movie_data.imdb_top_1000`
+          UNION ALL
+      SELECT Star4
+        FROM `clean-result-365422.movie_data.imdb_top_1000`
+      ) AS s
+        GROUP BY s.stars
+          ORDER BY totalnumber DESC
+            LIMIT 150)
+ ```
+ This returned a breakpoint of 11 movies.
+ 
+ 
