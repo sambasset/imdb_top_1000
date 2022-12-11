@@ -32,7 +32,7 @@ SELECT s.stars, COUNT(s.stars) as totalnumber
       GROUP BY s.stars
         ORDER BY totalnumber DESC
 ```
-This returned 2706 lines (actors). I could manually count to get the breakpoint to create a query that will return only the top 5 however here is a query that will return only the numbers so I can look at the 5th line to find the breakpoint of # of films for the top 5
+This returned 2706 lines (actors). I could manually count to get the breakpoint to create a query that will return only the top 5, however, here is a query that will return only the numbers so I can look at the 5th line to find the breakpoint of # of films for the top 5
 ```
 SELECT DISTINCT totalnumber
   FROM
@@ -113,7 +113,7 @@ SELECT Director, COUNT(Director) AS totalnumber
       ORDER BY totalnumber DESC
 ```
 
-This returns 548 lines. We will use the same disctinct count to return our threshold for the top 5.
+This returns 548 lines. We will use the same distinct count to return our threshold for the top 5.
 
 ```
 SELECT DISTINCT totalnumber
