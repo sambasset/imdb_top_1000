@@ -58,3 +58,30 @@ SELECT DISTINCT totalnumber
  
  ![alt text](https://github.com/sambasset/imdb_top_1000/blob/main/imdb_project_1.png?raw=true)
  
+Next I create a query that will return all the names of actors whos totalnumber is >= 11
+
+```
+SELECT *
+  FROM
+    (
+    SELECT s.stars, COUNT(s.stars) as totalnumber
+      FROM (
+        SELECT Star1 as stars
+          FROM `clean-result-365422.movie_data.imdb_top_1000`
+            UNION ALL
+        SELECT Star2
+          FROM `clean-result-365422.movie_data.imdb_top_1000`
+            UNION ALL
+        SELECT Star3
+          FROM `clean-result-365422.movie_data.imdb_top_1000`
+            UNION ALL
+        SELECT Star4
+          FROM `clean-result-365422.movie_data.imdb_top_1000`
+        ) AS s
+          GROUP BY s.stars
+            ORDER BY totalnumber DESC
+    ) WHERE totalnumber >= 11
+```
+
+This returns the following ...
+
