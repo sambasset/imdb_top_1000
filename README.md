@@ -56,4 +56,5 @@ SELECT DISTINCT totalnumber
  ```
  This returned a breakpoint of 11 movies.
  
+ ![alt text](https://github.com/sambasset/imdb_top_1000/blob/main/imdb_project_1.png?raw=true)
  
