@@ -97,6 +97,7 @@ SELECT Series_Title, Released_Year
       OR Star4 = 'Robert De Niro'
         ORDER BY Released_Year DESC
 ```
+
 This returns the following ...
 
  ![alt text](https://github.com/sambasset/imdb_top_1000/blob/main/imdb_project_3.png?raw=true)
@@ -111,7 +112,9 @@ SELECT Director, COUNT(Director) AS totalnumber
     GROUP BY Director
       ORDER BY totalnumber DESC
 ```
+
 This returns 548 lines. We will use the same disctinct count to return our threshold for the top 5.
+
 ```
 SELECT DISTINCT totalnumber
  FROM (
@@ -120,4 +123,35 @@ SELECT DISTINCT totalnumber
       GROUP BY Director
  ) ORDER BY totalnumber DESC
  ```
+ 
  ![alt text](https://github.com/sambasset/imdb_top_1000/blob/main/imdb_project_4.png?raw=true)
+ 
+ With our threshold being 9 I write the query to return everything >= 9
+ 
+ ```
+ SELECT *  
+  FROM (
+    SELECT Director, COUNT(Director) AS totalnumber
+      FROM `clean-result-365422.movie_data.imdb_top_1000`
+        GROUP BY Director
+          ORDER BY totalnumber DESC
+        ) WHERE totalnumber >= 9
+```
+
+This returns the following ...
+
+ ![alt text](https://github.com/sambasset/imdb_top_1000/blob/main/imdb_project_5.png?raw=true)
+ 
+Now I will see what movies Alfred Hitchcock directed in order from oldest to newest using the following query.
+
+```
+SELECT Series_Title, Released_Year
+  FROM `clean-result-365422.movie_data.imdb_top_1000`
+    WHERE Director = 'Alfred Hitchcock'
+      ORDER BY Released_Year DESC
+```
+
+This returns the following ...
+
+![alt text](https://github.com/sambasset/imdb_top_1000/blob/main/imdb_project_6.png?raw=true)
+
