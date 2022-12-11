@@ -100,3 +100,24 @@ SELECT Series_Title, Released_Year
 This returns the following ...
 
  ![alt text](https://github.com/sambasset/imdb_top_1000/blob/main/imdb_project_3.png?raw=true)
+ 
+## **1) Who are the top 5 Directors that appear on the list?** 
+
+Works very similar to the actors but without the need to union the columns.
+
+```
+SELECT Director, COUNT(Director) AS totalnumber
+  FROM `clean-result-365422.movie_data.imdb_top_1000`
+    GROUP BY Director
+      ORDER BY totalnumber DESC
+```
+This returns 548 lines. We will use the same disctinct count to return our threshold for the top 5.
+```
+SELECT DISTINCT totalnumber
+ FROM (
+   SELECT Director, COUNT(Director) AS totalnumber
+    FROM `clean-result-365422.movie_data.imdb_top_1000`
+      GROUP BY Director
+ ) ORDER BY totalnumber DESC
+ ```
+ ![alt text](https://github.com/sambasset/imdb_top_1000/blob/main/imdb_project_4.png?raw=true)
