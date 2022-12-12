@@ -1,5 +1,7 @@
 # imdb_top_1000
 
+This dataset is from Kaggle [LINK](https://www.kaggle.com/datasets/harshitshankhdhar/imdb-dataset-of-top-1000-movies-and-tv-shows)
+
 ## **PRIMARY GOAL**
 Discover different information from the database through SQL queries (BigQuery)
 1) Who are the top 5 Actors that appear on the list?
