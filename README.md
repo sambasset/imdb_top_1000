@@ -194,4 +194,56 @@ SELECT
   
   This returned the following ...
   
+  ![alt text](https://github.com/sambasset/imdb_top_1000/blob/main/imdb_project_7.png?raw=true)
   
+  Not the cleanest or most efficient way to get the results I wanted but I got the result. Will update later if I can come across a simpler, more efficient solution.
+
+## **4) What are the top 10 highest grossing movies?**
+
+Fairly simple query top return the top 10 highest grossing movies. Added a $ sign through a concat.
+
+```
+SELECT 
+  Series_Title, CONCAT("$",Gross) AS dollar
+    FROM `clean-result-365422.movie_data.imdb_top_1000`
+        ORDER BY Gross DESC
+          LIMIT 10
+```
+
+This returned the following ...
+
+![imdb_project_8](https://user-images.githubusercontent.com/119076539/207102016-06ee8386-d597-4a03-a551-bd4a975b77ee.png)
+
+## **5) Who are the top 5 highest grossing actors?**
+
+For this I already had the query for unioning the stars so it was then just creating a SUM for the Gross then ordering it from highest to lowest and limiting the return to 10.
+
+```
+SELECT s.stars, SUM(Gross) as ttl_gross
+  FROM
+    (SELECT Star1 as stars
+        FROM `clean-result-365422.movie_data.imdb_top_1000`
+          UNION ALL
+      SELECT Star2
+        FROM `clean-result-365422.movie_data.imdb_top_1000`
+          UNION ALL
+      SELECT Star3
+        FROM `clean-result-365422.movie_data.imdb_top_1000`
+          UNION ALL
+      SELECT Star4
+        FROM `clean-result-365422.movie_data.imdb_top_1000`
+      ) AS s, `clean-result-365422.movie_data.imdb_top_1000`
+      GROUP BY s.stars
+        ORDER BY SUM(Gross) DESC
+        LIMIT 10
+```
+
+This returned the following ...
+
+![imdb_project_9](https://user-images.githubusercontent.com/119076539/207106862-dc72bc11-2a09-4e79-a48f-e3f0c56249c8.png)
+
+That concludes my current discoveries in the imdb top 1000 dataset. Hopefully as I continue my journey in Data Analytics I can return to this to create better querys and dive deeper into the information with potential insights.
+
+Thank you for reading!
+
+Sam
