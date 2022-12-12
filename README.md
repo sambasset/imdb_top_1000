@@ -155,3 +155,43 @@ This returns the following ...
 
 ![alt text](https://github.com/sambasset/imdb_top_1000/blob/main/imdb_project_6.png?raw=true)
 
+## **3) What are the top Genres**
+
+This was more difficult because many movies had multiple Genre's (ie, Western, Drama, Fantasy) that when SPLIT were not put into a different row so I couldn't then use a COUNT to get an accurate representation of how many movies were that Genre type. 
+
+My workaround for this was creating a long and repeptitive query that pulled when the word was used using REGEXP_EXTRACT and then putting a count on that.
+
+```
+SELECT 
+  COUNT(genre_cnt) as Biography,
+  COUNT (genre_cnt2) as Drama,
+  COUNT (genre_cnt3) as Comedy,
+  COUNT (genre_cnt4) as Crime,
+  COUNT (genre_cnt5) as Adventure,
+  COUNT (genre_cnt6) as Horror,
+  COUNT (genre_cnt7) as Animation,
+  COUNT (genre_cnt8) as Fantasy,
+  COUNT (genre_cnt9) as Western,
+  COUNT (genre_cnt10) as Thriller,
+  COUNT (genre_cnt11) as Mystery,
+  FROM
+  (
+    SELECT 
+      REGEXP_EXTRACT(Genre,"Biography") As genre_cnt,
+      REGEXP_EXTRACT(Genre,"Drama") As genre_cnt2,
+      REGEXP_EXTRACT(Genre,"Comedy") As genre_cnt3,
+      REGEXP_EXTRACT(Genre,"Crime") As genre_cnt4,
+      REGEXP_EXTRACT(Genre,"Adventure") As genre_cnt5,
+      REGEXP_EXTRACT(Genre,"Horror") As genre_cnt6,
+      REGEXP_EXTRACT(Genre,"Animation") As genre_cnt7,
+      REGEXP_EXTRACT(Genre,"Fantasy") As genre_cnt8,
+      REGEXP_EXTRACT(Genre,"Western") As genre_cnt9,
+      REGEXP_EXTRACT(Genre,"Thriller") As genre_cnt10,
+      REGEXP_EXTRACT(Genre,"Mystery") As genre_cnt11
+  FROM `clean-result-365422.movie_data.imdb_top_1000`
+  )
+  ```
+  
+  This returned the following ...
+  
+  
